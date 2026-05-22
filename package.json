@@ -1,0 +1,17 @@
+{
+  "name": "mini-crm",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/web",
+    "db:up": "docker compose -f docker/docker-compose.yml up -d",
+    "db:down": "docker compose -f docker/docker-compose.yml down",
+    "db:logs": "docker compose -f docker/docker-compose.yml logs -f",
+    "db:migrate": "npm run migrate --workspace=libs/database",
+    "db:seed": "npm run seed --workspace=libs/database"
+  }
+}

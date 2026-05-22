@@ -1,2 +1,0 @@
-# crmini
-Mini CRM
