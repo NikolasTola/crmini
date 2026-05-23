@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const PUBLIC_ROUTES = ["/login"];
-const DEFAULT_REDIRECT_AFTER_LOGIN = "/dashboard";
+const DEFAULT_REDIRECT_AFTER_LOGIN = "/app/leads";
 const SESSION_COOKIE_NAME = "crm_session";
 
 export function middleware(request: NextRequest) {

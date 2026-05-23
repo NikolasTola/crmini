@@ -2,11 +2,11 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth/session";
 import { AuthenticatedLayout } from "@/layouts/AuthenticatedLayout";
 
-interface DashboardLayoutProps {
+interface AppLayoutProps {
   children: React.ReactNode;
 }
 
-export default async function DashboardLayout({ children }: DashboardLayoutProps) {
+export default async function AppLayout({ children }: AppLayoutProps) {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
 

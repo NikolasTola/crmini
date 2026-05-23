@@ -58,7 +58,7 @@ export function LeadsTable({ leads }: LeadsTableProps) {
               <td className="px-4 py-3"><StatusBadge status={lead.status} /></td>
               <td className="px-4 py-3">
                 <div className="flex items-center gap-2 justify-end">
-                  <Link href={`/dashboard/leads/${lead.id}/editar`}>
+                  <Link href={`/app/leads/${lead.id}/editar`}>
                     <Button variant="secondary" size="sm">Editar</Button>
                   </Link>
                   <DeleteButton id={lead.id} />

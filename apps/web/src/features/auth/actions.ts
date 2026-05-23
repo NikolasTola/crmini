@@ -41,7 +41,7 @@ export async function loginAction(
   const userAgent = headerStore.get("user-agent") ?? undefined;
 
   await createUserSession(user.id, ipAddress, userAgent);
-  redirect("/dashboard");
+  redirect("/app/leads");
 }
 
 export async function logoutAction(): Promise<void> {

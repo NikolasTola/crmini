@@ -31,7 +31,7 @@ export async function createLeadAction(
   }
 
   await createLead(parsed.data);
-  redirect("/dashboard/leads");
+  redirect("/app/leads");
 }
 
 export async function updateLeadAction(
@@ -52,12 +52,12 @@ export async function updateLeadAction(
   }
 
   await updateLead(id, parsed.data);
-  redirect("/dashboard/leads");
+  redirect("/app/leads");
 }
 
 export async function deleteLeadAction(id: string): Promise<void> {
   await deleteLead(id);
-  revalidatePath("/dashboard/leads");
+  revalidatePath("/app/leads");
 }
 
 export async function updateLeadStatusAction(
@@ -66,7 +66,7 @@ export async function updateLeadStatusAction(
 ): Promise<{ error?: string }> {
   try {
     await updateLead(id, { status });
-    revalidatePath("/dashboard/kanban");
+    revalidatePath("/app/kanban");
     return {};
   } catch {
     return { error: "Erro ao atualizar status do lead" };

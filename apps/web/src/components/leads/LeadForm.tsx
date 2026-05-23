@@ -133,7 +133,7 @@ export function LeadForm({ formAction, error, defaultValues }: LeadFormProps) {
       {/* Ações */}
       <div className="flex items-center gap-3 pt-1">
         <SubmitButton />
-        <Link href="/dashboard/leads">
+        <Link href="/app/leads">
           <Button type="button" variant="secondary">Cancelar</Button>
         </Link>
       </div>

@@ -30,7 +30,7 @@ export default async function LeadsPage({ searchParams }: LeadsPageProps) {
                 title="Leads"
                 description={`${leads.length} lead${leads.length !== 1 ? "s" : ""} encontrado${leads.length !== 1 ? "s" : ""}`}
                 action={
-                    <Link href="/dashboard/leads/novo">
+                    <Link href="/app/leads/novo">
                         <Button>+ Novo lead</Button>
                     </Link>
                 }

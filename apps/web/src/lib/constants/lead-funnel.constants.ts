@@ -1,4 +1,4 @@
-import { LeadStatus, LEAD_STATUS_LABELS } from "@mini-crm/shared-types";
+import { LeadStatus, LeadOrigem, LEAD_STATUS_LABELS, LEAD_ORIGEM_LABELS } from "@mini-crm/shared-types";
 
 export interface FunnelStage {
   status: LeadStatus;
@@ -53,3 +53,21 @@ export const FUNNEL_STAGES: FunnelStage[] = [
     textColor: "text-white",
   },
 ];
+
+// Cores hex para uso nos gráficos (Recharts não aceita classes Tailwind)
+export const FUNNEL_STAGE_HEX: Record<LeadStatus, string> = {
+  [LeadStatus.Novo]:          "#3b82f6", // blue-500
+  [LeadStatus.ContatoFeito]:  "#8b5cf6", // violet-500
+  [LeadStatus.Qualificado]:   "#eab308", // yellow-500
+  [LeadStatus.Proposta]:      "#f97316", // orange-500
+  [LeadStatus.Fechado]:       "#22c55e", // green-500
+  [LeadStatus.Perdido]:       "#f87171", // red-400
+};
+
+export const ORIGEM_HEX: Record<LeadOrigem, string> = {
+  [LeadOrigem.Instagram]:  "#e1306c",
+  [LeadOrigem.Indicacao]:  "#3b82f6",
+  [LeadOrigem.Site]:       "#8b5cf6",
+  [LeadOrigem.WhatsApp]:   "#22c55e",
+  [LeadOrigem.Outro]:      "#94a3b8",
+};
