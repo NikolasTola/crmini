@@ -8,6 +8,7 @@ import {
   deleteLead,
 } from "@/lib/db/leads.repository";
 import { createLeadSchema } from "@/lib/validations/lead.schema";
+import { LeadStatus } from "@mini-crm/shared-types";
 
 export interface LeadActionResult {
   error?: string;
@@ -57,4 +58,17 @@ export async function updateLeadAction(
 export async function deleteLeadAction(id: string): Promise<void> {
   await deleteLead(id);
   revalidatePath("/dashboard/leads");
+}
+
+export async function updateLeadStatusAction(
+  id: string,
+  status: LeadStatus
+): Promise<{ error?: string }> {
+  try {
+    await updateLead(id, { status });
+    revalidatePath("/dashboard/kanban");
+    return {};
+  } catch {
+    return { error: "Erro ao atualizar status do lead" };
+  }
 }
