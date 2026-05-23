@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
 import { logoutAction } from "@/features/auth/actions";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 interface NavItem {
   label: string;
@@ -58,16 +59,14 @@ export function AuthenticatedLayout({ children, userEmail }: AuthenticatedLayout
   }
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex bg-gray-50 dark:bg-slate-900">
 
       {/* Sidebar */}
-      <aside className="w-56 shrink-0 bg-white border-r border-gray-200 flex flex-col">
-        {/* Logo */}
-        <div className="h-14 flex items-center px-5 border-b border-gray-200">
-          <span className="font-semibold text-gray-900 text-sm">Mini CRM</span>
+      <aside className="w-56 shrink-0 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
+        <div className="h-14 flex items-center px-5 border-b border-gray-200 dark:border-slate-700">
+          <span className="font-semibold text-gray-900 dark:text-slate-100 text-sm">Mini CRM</span>
         </div>
 
-        {/* Nav */}
         <nav className="flex-1 px-3 py-4 space-y-0.5">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname.startsWith(item.href);
@@ -76,11 +75,11 @@ export function AuthenticatedLayout({ children, userEmail }: AuthenticatedLayout
                 key={item.href}
                 href={item.href}
                 className={`
-                  flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
-                  ${isActive
-                    ? "bg-blue-50 text-blue-700"
-                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"}
-                `}
+                flex items-center gap-2.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors
+                ${isActive
+                    ? "bg-blue-50 text-blue-700 dark:bg-blue-900/40 dark:text-blue-400"
+                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-slate-400 dark:hover:bg-slate-700 dark:hover:text-slate-200"}
+              `}
               >
                 {item.icon}
                 {item.label}
@@ -94,19 +93,20 @@ export function AuthenticatedLayout({ children, userEmail }: AuthenticatedLayout
       <div className="flex-1 flex flex-col min-w-0">
 
         {/* Header */}
-        <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-end px-6 gap-4 shrink-0">
-          <span className="text-sm text-gray-600">{userEmail}</span>
+        <header className="h-14 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 flex items-center justify-end px-6 gap-3 shrink-0">
+          <span className="text-sm text-gray-600 dark:text-slate-400">{userEmail}</span>
+          <ThemeToggle />
           <button
             onClick={handleLogout}
             disabled={isPending}
             className="text-sm font-medium text-gray-500 hover:text-gray-900
-                       disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                     dark:text-slate-400 dark:hover:text-slate-200
+                     disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {isPending ? "Saindo..." : "Sair"}
           </button>
         </header>
 
-        {/* Page content */}
         <main className="flex-1 p-6">
           {children}
         </main>

@@ -24,8 +24,8 @@ export function LeadFunnel({ activeStatuses, onToggle, isPending }: LeadFunnelPr
   const noFilter = activeStatuses.length === 0;
 
     return (
-        <div className="border border-gray-200 rounded-xl p-4 bg-white">
-            <p className="text-xs font-medium text-gray-400 uppercase tracking-wide mb-3 text-center">
+        <div className="border border-gray-200 dark:border-slate-700 rounded-xl p-4 bg-white dark:bg-slate-800">
+            <p className="text-xs font-medium text-gray-400 dark:text-slate-500 uppercase tracking-wide mb-3 text-center">
             Funil
             </p>
 
@@ -60,7 +60,7 @@ export function LeadFunnel({ activeStatuses, onToggle, isPending }: LeadFunnelPr
             })}
             </div>
 
-            <p className="text-xs text-gray-400 text-center mt-3 leading-relaxed">
+            <p className="text-xs text-gray-400 dark:text-slate-500 text-center mt-3 leading-relaxed">
             Clique para filtrar
             </p>
         </div>

@@ -57,7 +57,7 @@ export function LeadFilter({
             transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1
             ${open
               ? "border-blue-500 bg-blue-50 text-blue-700"
-              : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50"}
+              : "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"}
           `}
         >
           {/* Bolinhas dos status ativos */}
@@ -82,7 +82,8 @@ export function LeadFilter({
 
         {/* Dropdown panel */}
         {open && (
-          <div className="absolute top-full left-0 mt-1.5 w-52 bg-white border border-gray-200 rounded-xl shadow-lg z-20 py-1.5">
+          <div className="bg-white border border-gray-200 dark:bg-slate-800 dark:border-slate-700 rounded-xl shadow-lg"
+>
             {FUNNEL_STAGES.map(({ status, label }) => {
               const checked = activeStatuses.includes(status);
               return (
@@ -91,7 +92,7 @@ export function LeadFilter({
                   className={`
                     flex items-center gap-3 px-4 py-2.5 cursor-pointer
                     transition-colors select-none text-sm
-                    ${isPending ? "opacity-60 pointer-events-none" : "hover:bg-gray-50"}
+                    ${isPending ? "opacity-60 pointer-events-none" : "hover:bg-gray-50 dark:hover:bg-slate-700"}
                   `}
                 >
                   <input
@@ -102,7 +103,7 @@ export function LeadFilter({
                                focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
                   />
                   <span className={`w-2.5 h-2.5 rounded-full shrink-0 ${INDICATOR_COLORS[status]}`} />
-                  <span className={checked ? "text-gray-900 font-medium" : "text-gray-600"}>
+                  <span className={checked ? "text-gray-900 dark:text-slate-100 font-medium" : "text-gray-600 dark:text-slate-400"}>
                     {label}
                   </span>
                 </label>
@@ -112,11 +113,11 @@ export function LeadFilter({
             {/* Rodapé do dropdown */}
             {hasFilter && (
               <>
-                <div className="border-t border-gray-100 mt-1.5 pt-1.5 px-4 pb-1">
+                <div className="border-t border-gray-100 dark:border-slate-700">
                   <button
                     onClick={() => { onClear(); setOpen(false); }}
                     disabled={isPending}
-                    className="text-xs text-gray-400 hover:text-gray-700 transition-colors w-full text-left"
+                    className="text-gray-400 hover:text-gray-700 dark:text-slate-500 dark:hover:text-slate-300"
                   >
                     Limpar filtro
                   </button>

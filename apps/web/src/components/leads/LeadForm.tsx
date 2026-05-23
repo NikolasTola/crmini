@@ -16,6 +16,8 @@ const INPUT_CLASS = `
   placeholder-gray-400 text-sm bg-white
   focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent
   disabled:opacity-50 disabled:cursor-not-allowed transition-colors
+  dark:bg-slate-800 dark:border-slate-600 dark:text-slate-200
+  dark:placeholder-slate-500
 `;
 
 interface LeadFormProps {

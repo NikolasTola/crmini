@@ -12,8 +12,8 @@ interface ChartLeadsByAgeProps {
 
 export function ChartLeadsByAge({ data }: ChartLeadsByAgeProps) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-5">
-      <h2 className="text-sm font-semibold text-gray-700 mb-4">Leads por faixa etária</h2>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-5">
+      <h2 className="text-sm font-semibold text-gray-700 dark:text-slate-300 mb-4">Leads por faixa etária</h2>
       <ResponsiveContainer width="100%" height={240}>
         <BarChart data={data} layout="vertical" barSize={20}>
           <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />

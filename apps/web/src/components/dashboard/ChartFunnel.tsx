@@ -13,8 +13,8 @@ export function ChartFunnel({ data }: ChartFunnelProps) {
   const max = Math.max(...data.map((r) => r.total), 1);
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-5">
-      <h2 className="text-sm font-semibold text-gray-700 mb-4">Funil de conversão</h2>
+    <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-5">
+      <h2 className="text-sm font-semibold text-gray-700 dark:text-slate-300 mb-4">Funil de conversão</h2>
       <div className="flex flex-col items-center gap-1 py-2">
         {FUNNEL_STAGES.map(({ status, label }, index) => {
           const total = map.get(status as LeadStatus) ?? 0;
@@ -38,7 +38,7 @@ export function ChartFunnel({ data }: ChartFunnelProps) {
                 </div>
               </div>
               {/* Label à direita */}
-              <span className="text-xs text-gray-500 w-24 shrink-0">{label}</span>
+              <span className="text-xs text-gray-500 dark:text-slate-400 w-24 shrink-0">{label}</span>
             </div>
           );
         })}

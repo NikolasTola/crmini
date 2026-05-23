@@ -42,7 +42,7 @@ export function KanbanColumn({
     <div className="flex flex-col min-w-0 w-48 shrink-0">
       {/* Cabeçalho da coluna */}
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-semibold text-gray-700 uppercase tracking-wide truncate">
+        <span className="text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wide">
           {label}
         </span>
         <span className={`
@@ -61,8 +61,8 @@ export function KanbanColumn({
           border-2 border-t-4 transition-colors
           ${COLUMN_COLORS[status]}
           ${isOver
-            ? "border-blue-300 bg-blue-50"
-            : "border-gray-200 bg-gray-50"}
+            ? "border-blue-300 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-700"
+            : "border-gray-200 dark:border-slate-700 bg-gray-50 dark:bg-slate-800/50"}
         `}
       >
         {leads.map((lead) => (
@@ -75,7 +75,7 @@ export function KanbanColumn({
 
         {leads.length === 0 && (
           <div className="flex items-center justify-center h-20">
-            <p className="text-xs text-gray-400">Solte aqui</p>
+            <p className="text-xs text-gray-400 dark:text-slate-600">Solte aqui</p>
           </div>
         )}
       </div>
