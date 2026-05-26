@@ -25,7 +25,7 @@ export default async function LeadsPage({ searchParams }: LeadsPageProps) {
     const leads = await findAllLeads(activeStatuses.length > 0 ? activeStatuses : undefined);
 
     return (
-        <Suspense>
+        <Suspense fallback={null}>
             <PageHeader
                 title="Leads"
                 description={`${leads.length} lead${leads.length !== 1 ? "s" : ""} encontrado${leads.length !== 1 ? "s" : ""}`}

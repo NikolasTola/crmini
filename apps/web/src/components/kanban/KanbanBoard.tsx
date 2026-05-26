@@ -3,7 +3,10 @@
 import { DndContext, DragOverlay, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { KanbanColumn } from "./KanbanColumn";
 import { KanbanCard } from "./KanbanCard";
+import { Modal } from "@/components/ui/Modal";
+import { LeadDetail } from "@/components/leads/LeadDetail";
 import { useKanban } from "@/features/kanban/hooks/useKanban";
+import { useLeadModal } from "@/features/kanban/hooks/useLeadModal";
 import { FUNNEL_STAGES } from "@/lib/constants";
 import type { Lead } from "@/lib/db/leads.repository";
 import { LeadStatus } from "@mini-crm/shared-types";
@@ -16,14 +19,12 @@ export function KanbanBoard({ initialLeads }: KanbanBoardProps) {
   const { columns, draggingId, handleDragStart, handleDragEnd } =
     useKanban(initialLeads);
 
-  // Encontra o lead sendo arrastado para renderizar no DragOverlay
+  const { selectedLead, isOpen, openModal, closeModal } = useLeadModal();
+
   const draggingLead = draggingId
-    ? Object.values(columns)
-        .flat()
-        .find((l) => l.id === draggingId) ?? null
+    ? Object.values(columns).flat().find((l) => l.id === draggingId) ?? null
     : null;
 
-  // PointerSensor com distância mínima evita drag acidental em cliques
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 6 },
@@ -31,32 +32,48 @@ export function KanbanBoard({ initialLeads }: KanbanBoardProps) {
   );
 
   return (
-    <DndContext
-      sensors={sensors}
-      onDragStart={(e) => handleDragStart(e.active.id as string)}
-      onDragEnd={handleDragEnd}
-    >
-      {/* Scroll horizontal para quando as colunas não cabem na tela */}
-      <div className="overflow-x-auto pb-4">
-        <div className="flex gap-4 min-w-max">
-          {FUNNEL_STAGES.map(({ status, label }) => (
-            <KanbanColumn
-              key={status}
-              status={status as LeadStatus}
-              label={label}
-              leads={columns[status as LeadStatus]}
-              draggingId={draggingId}
-            />
-          ))}
+    <>
+      <DndContext
+        sensors={sensors}
+        onDragStart={(e) => handleDragStart(e.active.id as string)}
+        onDragEnd={handleDragEnd}
+      >
+        <div className="overflow-x-auto pb-4">
+          <div className="flex gap-4 min-w-max">
+            {FUNNEL_STAGES.map(({ status, label }) => (
+              <KanbanColumn
+                key={status}
+                status={status as LeadStatus}
+                label={label}
+                leads={columns[status as LeadStatus]}
+                draggingId={draggingId}
+                onCardClick={openModal}
+              />
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Card fantasma que segue o cursor durante o drag */}
-      <DragOverlay dropAnimation={null}>
-        {draggingLead ? (
-          <KanbanCard lead={draggingLead} isDragging />
-        ) : null}
-      </DragOverlay>
-    </DndContext>
+        <DragOverlay dropAnimation={null}>
+          {draggingLead ? (
+            <KanbanCard
+              lead={draggingLead}
+              isDragging
+              onClick={() => {}}
+            />
+          ) : null}
+        </DragOverlay>
+      </DndContext>
+
+      {/* Modal de detalhes do lead */}
+      {selectedLead && (
+        <Modal
+          isOpen={isOpen}
+          onClose={closeModal}
+          title={selectedLead.nome}
+        >
+          <LeadDetail lead={selectedLead} />
+        </Modal>
+      )}
+    </>
   );
 }

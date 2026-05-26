@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { THEME_SCRIPT } from "@/lib/theme/theme-script";
+import { ThemeProvider } from "@/core/providers/ThemeProvider";
 
 export const metadata: Metadata = {
   title: "Mini CRM",
@@ -15,10 +16,13 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
-        {/* Roda antes da hidratação para evitar flash de tema errado */}
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

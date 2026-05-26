@@ -1,4 +1,4 @@
-import { LeadStatus, LeadOrigem, LEAD_STATUS_LABELS, LEAD_ORIGEM_LABELS } from "@mini-crm/shared-types";
+import { LeadStatus, LeadOrigem, LEAD_STATUS_LABELS } from "@mini-crm/shared-types";
 
 export interface FunnelStage {
   status: LeadStatus;

@@ -15,12 +15,12 @@ const COLUMN_COLORS: Record<LeadStatus, string> = {
 };
 
 const COLUMN_COUNT_COLORS: Record<LeadStatus, string> = {
-  novo:          "bg-blue-100 text-blue-700",
-  contato_feito: "bg-violet-100 text-violet-700",
-  qualificado:   "bg-yellow-100 text-yellow-700",
-  proposta:      "bg-orange-100 text-orange-700",
-  fechado:       "bg-green-100 text-green-700",
-  perdido:       "bg-red-100 text-red-600",
+  novo:          "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400",
+  contato_feito: "bg-violet-100 text-violet-700 dark:bg-violet-900/30 dark:text-violet-400",
+  qualificado:   "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400",
+  proposta:      "bg-orange-100 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400",
+  fechado:       "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400",
+  perdido:       "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
 };
 
 interface KanbanColumnProps {
@@ -28,6 +28,7 @@ interface KanbanColumnProps {
   label: string;
   leads: Lead[];
   draggingId: string | null;
+  onCardClick: (lead: Lead) => void;
 }
 
 export function KanbanColumn({
@@ -35,14 +36,14 @@ export function KanbanColumn({
   label,
   leads,
   draggingId,
+  onCardClick,
 }: KanbanColumnProps) {
   const { setNodeRef, isOver } = useDroppable({ id: status });
 
   return (
     <div className="flex flex-col min-w-0 w-48 shrink-0">
-      {/* Cabeçalho da coluna */}
       <div className="flex items-center justify-between mb-3">
-        <span className="text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wide">
+        <span className="text-xs font-semibold text-gray-700 dark:text-slate-300 uppercase tracking-wide truncate">
           {label}
         </span>
         <span className={`
@@ -53,7 +54,6 @@ export function KanbanColumn({
         </span>
       </div>
 
-      {/* Área de drop */}
       <div
         ref={setNodeRef}
         className={`
@@ -70,6 +70,7 @@ export function KanbanColumn({
             key={lead.id}
             lead={lead}
             isDragging={draggingId === lead.id}
+            onClick={onCardClick}
           />
         ))}
 

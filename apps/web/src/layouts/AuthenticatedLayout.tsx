@@ -62,7 +62,7 @@ export function AuthenticatedLayout({ children, userEmail }: AuthenticatedLayout
     <div className="min-h-screen flex bg-gray-50 dark:bg-slate-900">
 
       {/* Sidebar */}
-      <aside className="w-56 shrink-0 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col">
+      <aside className="w-56 shrink-0 bg-white dark:bg-slate-800 border-r border-gray-200 dark:border-slate-700 flex flex-col z-0 relative">
         <div className="h-14 flex items-center px-5 border-b border-gray-200 dark:border-slate-700">
           <span className="font-semibold text-gray-900 dark:text-slate-100 text-sm">Mini CRM</span>
         </div>
@@ -93,7 +93,7 @@ export function AuthenticatedLayout({ children, userEmail }: AuthenticatedLayout
       <div className="flex-1 flex flex-col min-w-0">
 
         {/* Header */}
-        <header className="h-14 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 flex items-center justify-end px-6 gap-3 shrink-0">
+        <header className="h-14 bg-white dark:bg-slate-800 border-b border-gray-200 dark:border-slate-700 flex items-center justify-end px-6 gap-3 shrink-0 z-0 relative">
           <span className="text-sm text-gray-600 dark:text-slate-400">{userEmail}</span>
           <ThemeToggle />
           <button

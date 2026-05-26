@@ -1,6 +1,6 @@
 "use client";
 
-import { LEAD_STATUS_LABELS, LeadStatus } from "@mini-crm/shared-types";
+import { LeadStatus } from "@mini-crm/shared-types";
 import { FUNNEL_STAGE_HEX, FUNNEL_STAGES } from "@/lib/constants";
 import type { LeadsByStatusRow } from "@/lib/db/dashboard.repository";
 
@@ -16,7 +16,7 @@ export function ChartFunnel({ data }: ChartFunnelProps) {
     <div className="bg-white dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 p-5">
       <h2 className="text-sm font-semibold text-gray-700 dark:text-slate-300 mb-4">Funil de conversão</h2>
       <div className="flex flex-col items-center gap-1 py-2">
-        {FUNNEL_STAGES.map(({ status, label }, index) => {
+        {FUNNEL_STAGES.map(({ status, label }) => {
           const total = map.get(status as LeadStatus) ?? 0;
           // Largura proporcional ao total, mínimo 20% para visibilidade
           const widthPct = max > 0 ? Math.max((total / max) * 100, total > 0 ? 20 : 8) : 8;
